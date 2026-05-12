@@ -1,5 +1,9 @@
 package com.example.ems.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import com.example.ems.entity.Employee;
 import com.example.ems.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +28,22 @@ public class EmployeeService {
     public Employee create(Employee employee) {
         return repository.save(employee);
     }
+
+    public List<Employee> getByDepartment(String department) {
+    return repository.findByDepartment(department);
+    }
+
+    public List<Employee> getSortedEmployees(String field, String order) {
+    Sort sort = order.equalsIgnoreCase("desc") 
+        ? Sort.by(field).descending() 
+        : Sort.by(field).ascending();
+    return repository.findAll(sort);
+}
+
+public Page<Employee> getPaginatedEmployees(int page, int size) {
+    Pageable pageable = PageRequest.of(page, size);
+    return repository.findAll(pageable);
+}
 
     public Employee update(Long id, Employee updated) {
         Employee existing = getById(id);

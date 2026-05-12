@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -43,6 +44,7 @@ public class Employee {
     private BigDecimal salary;
 
     @Column(name = "hire_date", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate hireDate;
 
     @Enumerated(EnumType.STRING)
