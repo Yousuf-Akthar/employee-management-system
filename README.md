@@ -16,6 +16,9 @@ A simple RESTful API for managing employee data using Spring Boot and MySQL.
 ## API Endpoints
 - `GET /api/employees` - List all employees
 - `GET /api/employees/{id}` - Get details of one employee
+- `GET /api/employees/department?department=HR` - Filter by department
+- `GET /api/employees/sort?field=firstName&order=asc` - Sort by any field
+- `GET /api/employees/paginate?page=0&size=5` - Get paginated results
 - `POST /api/employees` - Add a new employee
 - `PUT /api/employees/{id}` - Update an employee's info
 - `DELETE /api/employees/{id}` - Remove an employee
